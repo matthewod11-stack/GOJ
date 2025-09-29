@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GameOfJones — Reviewer Test Page</title>
+  <style>
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:2rem;line-height:1.6}
+    .container{max-width:860px;margin:0 auto}
+    code{background:#f5f5f5;padding:.15rem .35rem;border-radius:4px}
+    .card{border:1px solid #e5e5e5;border-radius:10px;padding:1rem;margin:1rem 0}
+    a.button{display:inline-block;padding:.6rem 1rem;border-radius:8px;border:1px solid #ccc;text-decoration:none}
+  </style>
+</head><body><div class="container">
+  <h1>GameOfJones — Reviewer Test Page</h1>
+  <p>This page lets TikTok reviewers test OAuth and see our posting intent.</p>
+  <div class="card">
+    <h2>1) OAuth</h2>
+    <p>Click to start TikTok OAuth. We request <code>user.info.basic</code> and <code>video.publish</code>.</p>
+    <a id="authLink" class="button" href="#">Authorize with TikTok</a>
+    <p><small>On success, TikTok redirects to <code>https://matthewod11-stack.github.io/goj/reviewer.html</code> with <code>?code=...</code>. The token exchange happens on our server.</small></p>
+  </div>
+  <div class="card">
+    <h2>2) Post Test Video (server-side)</h2>
+    <p>Server calls Content Posting API: <code>Init → Upload → Get Post Status</code>. Test caption: <strong>“GameOfJones Test Post”</strong>.</p>
+  </div>
+  <script>
+    const clientKey="Yawvucob8lais6dd6";
+    const redirect=encodeURIComponent("https://matthewod11-stack.github.io/goj/reviewer.html");
+    const scope=encodeURIComponent("user.info.basic video.publish");
+    const state="goj-review";
+    const auth=`https://www.tiktok.com/v2/auth/authorize/?client_key=${clientKey}&response_type=code&scope=${scope}&redirect_uri=${redirect}&state=${state}`;
+    document.getElementById("authLink").href=auth;
+  </script>
+</div></body></html>
